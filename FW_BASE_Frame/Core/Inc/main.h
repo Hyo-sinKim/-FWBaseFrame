@@ -31,7 +31,14 @@ extern "C" {
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "cmsis_os.h"
 
+#include "Common_HAL.h"
+#include "Rework_PP_Drv.h"  
+#include "hsDebug_MSG.h"
+#include "hsCommon_Utill.h"
+#include "hsGlobalErrorHandle.h"
+  
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/

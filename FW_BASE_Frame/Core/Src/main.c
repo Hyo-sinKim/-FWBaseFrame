@@ -22,6 +22,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "User_Main.h"
 
 /* USER CODE END Includes */
 
@@ -38,6 +39,7 @@
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
 
+#if 0
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
@@ -59,7 +61,25 @@ DMA_HandleTypeDef hdma_usart1_tx;
 
 osThreadId defaultTaskHandle;
 /* USER CODE BEGIN PV */
+#endif
 
+ADC_HandleTypeDef hadc3;
+DMA_HandleTypeDef hdma_adc3;
+
+I2C_HandleTypeDef hi2c1;
+I2C_HandleTypeDef hi2c2;
+
+SPI_HandleTypeDef hspi1;
+
+TIM_HandleTypeDef htim3;
+TIM_HandleTypeDef htim4;
+
+UART_HandleTypeDef huart1;
+UART_HandleTypeDef huart2;
+UART_HandleTypeDef huart3;
+DMA_HandleTypeDef hdma_usart1_tx;
+
+#if 0
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -78,11 +98,28 @@ static void MX_TIM4_Init(void);
 void StartDefaultTask(void const * argument);
 
 /* USER CODE BEGIN PFP */
+#endif
+void SystemClock_Config(void);
+static void MX_GPIO_Init(void);
+static void MX_DMA_Init(void);
+static void MX_ADC3_Init(void);
+static void MX_TIM3_Init(void);
+static void MX_USART1_UART_Init(void);
+static void MX_USART2_UART_Init(void);
+static void MX_USART3_UART_Init(void);
+static void MX_I2C1_Init(void);
+static void MX_SPI1_Init(void);
+static void MX_I2C2_Init(void);
+static void MX_TIM4_Init(void);
 
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+#if configAPPLICATION_ALLOCATED_HEAP
+#pragma location= ".ccmram"
+uint8_t ucHeap[ configTOTAL_HEAP_SIZE ];
+#endif
 
 /* USER CODE END 0 */
 
@@ -143,6 +180,7 @@ int main(void)
 
   /* USER CODE BEGIN RTOS_QUEUES */
   /* add queues, ... */
+#if 0
   /* USER CODE END RTOS_QUEUES */
 
   /* Create the thread(s) */
@@ -151,7 +189,10 @@ int main(void)
   defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
+#endif
   /* add threads, ... */
+  hsMain_User_Config();
+  
   /* USER CODE END RTOS_THREADS */
 
   /* Start scheduler */
